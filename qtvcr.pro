@@ -3,12 +3,12 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = 03_MotionDetection
+TARGET = qtvcr
 QT += core gui multimedia network concurrent
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 INCLUDEPATH += .
 
-DESTDIR=/home/ns/nsp/build-qtvcr
+DESTDIR=/home/ns/nsp/qtvcr/build_lin
 
 # OpenCV
 #unix: mac {
@@ -45,6 +45,8 @@ DEFINES += OPENCV_DATA_DIR=\\\"/usr/include/opencv4/\\\"
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-HEADERS += mainwindow.h capture_thread.h utilities.h
-SOURCES += main.cpp mainwindow.cpp capture_thread.cpp utilities.cpp
+HEADERS += mainwindow.h capture_thread.h utilities.h \
+    json_parser.h
+SOURCES += main.cpp mainwindow.cpp capture_thread.cpp utilities.cpp \
+    json_parser.cpp
 
