@@ -23,9 +23,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), fileMenu(nullptr)
 
 void MainWindow::initUI()
 {
-    this->resize(1000, 800);
+    //this->resize(1000, 800);
+    this->showMaximized();
     // setup menubar
-    fileMenu = menuBar()->addMenu("&File");
+    fileMenu = menuBar()->addMenu("&Camaras");
 
     // main area
     QGridLayout *main_layout = new QGridLayout();
@@ -77,7 +78,7 @@ void MainWindow::createActions()
     // create actions, add them to menus
     cameraInfoAction = new QAction("Camera &Information", this);
     fileMenu->addAction(cameraInfoAction);
-    openCameraAction = new QAction("&Open Camera", this);
+    openCameraAction = new QAction("&Abrir Cámara "+Utilities::getParam(qApp->arguments()[1].replace("source=", "")+".nom"), this);
     fileMenu->addAction(openCameraAction);
     calcFPSAction = new QAction("&Calculate FPS", this);
     fileMenu->addAction(calcFPSAction);

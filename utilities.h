@@ -11,4 +11,5 @@ class Utilities
     static QString fileToString(const QString &rutaArchivo);
     static void ejemploUso();
     static QString getParam(const QString param);
+    static int getParamCount();
 };

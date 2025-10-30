@@ -93,3 +93,14 @@ QString Utilities::getParam(const QString param)
     qDebug() << "JSON de Entrada: " << jsonString;
     return parser.getParam(jsonString, param);
 }
+int Utilities::getParamCount()
+{
+    JsonParser parser;
+
+    // La cadena JSON que has proporcionado
+    QString jsonString = fileToString("config.cfg").replace("\n", "");//"{\"params\":{\"dato1\":\"aaa\", \"dato2\": 222, \"activo\": true, \"vacio\": null, \"profundo\": {\"config\": 1.23}}}";
+
+    qDebug() << "--- Analizador de Parámetros JSON ---";
+    qDebug() << "JSON de Entrada: " << jsonString;
+    return parser.getParamCount(jsonString);
+}

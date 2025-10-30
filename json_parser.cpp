@@ -60,3 +60,22 @@ QString JsonParser::getParam(const QString &jsonString, const QString &paramPath
 
     return QString(); // Debería ser inaccesible si la lógica es correcta, pero se añade por seguridad.
 }
+int JsonParser::getParamCount(const QString &jsonString)
+{
+    // 1. Convertir QString a QJsonDocument
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+
+    if (doc.isNull()) {
+        qWarning() << "Error: La cadena no es un documento JSON válido.";
+        return 0;
+    }
+
+    // Asegurarse de que el documento es un objeto (lo más común para parámetros raíz)
+    if (!doc.isObject()) {
+        qWarning() << "Error: El documento JSON no es un objeto raíz.";
+        return 0;
+    }
+
+    //QJsonObject currentObject = doc.object();
+    return doc.object().count();
+}

@@ -25,4 +25,5 @@ public:
      * @return El valor del parámetro como QString, o un QString vacío si no se encuentra o hay error.
      */
     QString getParam(const QString &jsonString, const QString &paramPath);
+    int getParamCount(const QString &jsonString);
 };

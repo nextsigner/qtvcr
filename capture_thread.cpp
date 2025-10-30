@@ -64,6 +64,12 @@ void CaptureThread::run()
     cv::VideoCapture cap;
 
     QString current=Utilities::getParam("current");
+    qDebug()<<"ARGS:"<<qApp->arguments();
+    if(qApp->arguments()[1].indexOf("source=")>=0){
+        qDebug()<<"current from arg:::"<<qApp->arguments()[1];
+        current=qApp->arguments()[1].replace("source=", "");
+    }
+
     QByteArray source="";
     if(Utilities::getParam(current+".tipo")==QString("webcam")){
         source.append("/dev/video");
@@ -73,7 +79,7 @@ void CaptureThread::run()
         qDebug()<<"Capturando desde WebCam: "<<source;
     }else{
         QByteArray source="";
-        source.append(Utilities::getParam("cam1.urlmin"));
+        source.append(Utilities::getParam(current+".urlmin"));
         qDebug()<<"Capturando desde: "<<source;
         cv::VideoCapture cap0(source.constData());
         cap=cap0;
@@ -238,7 +244,7 @@ void CaptureThread::humanDetect(cv::Mat &frame)
     hog.detectMultiScale(
         frame,
         found,
-        0,
+        1.0,
         cv::Size(8, 8),
         cv::Size(32, 32),
         1.05,
